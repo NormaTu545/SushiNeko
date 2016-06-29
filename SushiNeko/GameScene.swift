@@ -56,6 +56,26 @@ class GameScene: SKScene {
             } else {
                 character.side = .Left
             }
+            
+            /* Grab sushi piece on top of the base sushi piece, it will always be 'first' */
+            let firstPiece = sushiTower.first as SushiPiece!
+            
+            /* Remove from sushi tower array */
+            sushiTower.removeFirst()
+            
+            /* Animate the punched sushi piece */
+            firstPiece.flip(character.side)
+            
+            /* Add a new sushi piece to the top of the sushi tower */
+            addRandomPieces(1)
+            
+            /* Drop all the sushi pieces down one place */
+            for node:SushiPiece in sushiTower {
+                node.runAction(SKAction.moveBy(CGVector(dx: 0, dy: -55), duration: 0.10))
+                
+                /* Reduce zPosition to stop zPosition climbing over UI */
+                node.zPosition -= 1
+            }
         }
     }
    
