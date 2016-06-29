@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD53470A1D24926F00FBF7B1 /* AnimationActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD5347091D24926F00FBF7B1 /* AnimationActions.sks */; };
 		AD8FE31F1D247DE700D32672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FE31E1D247DE700D32672 /* AppDelegate.swift */; };
 		AD8FE3211D247DE700D32672 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD8FE3201D247DE700D32672 /* GameScene.sks */; };
 		AD8FE3231D247DE700D32672 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FE3221D247DE700D32672 /* GameScene.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD5347091D24926F00FBF7B1 /* AnimationActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationActions.sks; sourceTree = "<group>"; };
 		AD8FE31B1D247DE700D32672 /* SushiNeko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SushiNeko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8FE31E1D247DE700D32672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD8FE3201D247DE700D32672 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		AD8FE3121D247DE700D32672 = {
 			isa = PBXGroup;
 			children = (
+				AD5347091D24926F00FBF7B1 /* AnimationActions.sks */,
 				AD8FE31D1D247DE700D32672 /* SushiNeko */,
 				AD8FE31C1D247DE700D32672 /* Products */,
 			);
@@ -209,6 +212,7 @@
 			files = (
 				AD8FE3211D247DE700D32672 /* GameScene.sks in Resources */,
 				AD8FE3381D24800200D32672 /* sfx_swipe.caf in Resources */,
+				AD53470A1D24926F00FBF7B1 /* AnimationActions.sks in Resources */,
 				AD8FE32D1D247DE700D32672 /* LaunchScreen.storyboard in Resources */,
 				AD8FE32A1D247DE700D32672 /* Assets.xcassets in Resources */,
 				AD8FE3351D247F6000D32672 /* assets.atlas in Resources */,
@@ -399,6 +403,7 @@
 				AD8FE3331D247DE700D32672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
