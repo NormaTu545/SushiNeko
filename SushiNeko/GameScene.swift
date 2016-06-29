@@ -8,6 +8,11 @@
 
 import SpriteKit
 
+/* Tracking enum for use with character and sushi side */
+enum Side {
+    case Left, Right, None
+}
+
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
