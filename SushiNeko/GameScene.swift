@@ -14,8 +14,24 @@ enum Side {
 }
 
 class GameScene: SKScene {
+    
+    /* Game objects */
+    var sushiBasePiece: SushiPiece!
+    var character: Character!
+    
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        /* Connect game objects */
+        sushiBasePiece = childNodeWithName("sushiBasePiece") as! SushiPiece
+        
+        /* Setup chopstick connections */
+        sushiBasePiece.connectChopsticks()
+        
+        /* Connect game objects */
+        character = childNodeWithName("character") as! Character
+        
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
         myLabel.text = "Hello, World!"
         myLabel.fontSize = 45
