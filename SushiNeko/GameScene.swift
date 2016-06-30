@@ -85,6 +85,17 @@ class GameScene: SKScene {
             /* Grab sushi piece on top of the base sushi piece, it will always be 'first' */
             let firstPiece = sushiTower.first as SushiPiece!
             
+            /* Check character side against sushi piece side (this is the death collision check)*/
+            if character.side == firstPiece.side {
+                
+                scoochDown()
+                
+                gameOver()
+                
+                /* No need to continue as player dead */
+                return
+            }
+            
             /* Remove from sushi tower array */
             sushiTower.removeFirst()
             
@@ -94,13 +105,47 @@ class GameScene: SKScene {
             /* Add a new sushi piece to the top of the sushi tower */
             addRandomPieces(1)
             
-            /* Drop all the sushi pieces down one place */
-            for node:SushiPiece in sushiTower {
-                node.runAction(SKAction.moveBy(CGVector(dx: 0, dy: -55), duration: 0.10))
-                
-                /* Reduce zPosition to stop zPosition climbing over UI */
-                node.zPosition -= 1
-            }
+            scoochDown()
+        }
+    }
+    
+    func scoochDown() {
+        /* Drop all the sushi pieces down a place (visually) */
+        for node:SushiPiece in sushiTower {
+            node.runAction(SKAction.moveBy(CGVector(dx: 0, dy: -55), duration: 0.10))
+            
+            /* Reduce zPosition to stop zPosition climbing over UI */
+            node.zPosition -= 1
+        }
+    }
+    
+    func gameOver() {
+        /* Game over! */
+        
+        state = .GameOver
+        
+        /* Turn all the sushi pieces red*/
+        for node:SushiPiece in sushiTower {
+            node.runAction(SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 1.0, duration: 0.50))
+        }
+        
+        /* Make the player turn red */
+        character.runAction(SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 1.0, duration: 0.50))
+        
+        /* Change play button selection handler */
+        playButton.selectedHandler = {
+            
+            /* Grab reference to the SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            /* Ensure correct aspect mode */
+            scene.scaleMode = .AspectFill
+            
+            /* Restart GameScene */
+            skView.presentScene(scene)
         }
     }
    
