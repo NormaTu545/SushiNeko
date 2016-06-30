@@ -13,14 +13,23 @@ enum Side {
     case Left, Right, None
 }
 
+/* Tracking enum for game state */
+enum GameState {
+    case Title, Ready, Playing, GameOver
+}
+
 class GameScene: SKScene {
     
     /* Game objects */
     var sushiBasePiece: SushiPiece!
     var character: Character!
+    var playButton: MSButtonNode!
     
     /* Sushi tower array */
     var sushiTower: [SushiPiece] = []
+    
+    /* Game management */
+    var state: GameState = .Title
     
     
     override func didMoveToView(view: SKView) {
@@ -28,12 +37,13 @@ class GameScene: SKScene {
         
         /* Connect game objects */
         sushiBasePiece = childNodeWithName("sushiBasePiece") as! SushiPiece
+        character = childNodeWithName("character") as! Character
         
         /* Setup chopstick connections */
         sushiBasePiece.connectChopsticks()
         
-        /* Connect game objects */
-        character = childNodeWithName("character") as! Character
+        /* UI game objects */
+        playButton = childNodeWithName("playButton") as! MSButtonNode
 
         /* Manually stack the start of the tower */
         addTowerPiece(.None)
@@ -41,10 +51,25 @@ class GameScene: SKScene {
         
         /* Randomize tower to just outside of the screen */
         addRandomPieces(10)
+        
+        /* Setup play button selection handler */
+        playButton.selectedHandler = {
+            
+            /* Start game */
+            self.state = .Ready
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
+        
+        /* Game not ready to play */
+        if state == .GameOver || state == .Title { return }
+        
+        /* Game begins on first touch */
+        if state == .Ready {
+            state = .Playing
+        }
         
         for touch in touches {
             /* Get touch position in scene */
