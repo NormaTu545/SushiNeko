@@ -25,6 +25,8 @@ class GameScene: SKScene {
     var character: Character!
     var playButton: MSButtonNode!
     var healthBar: SKSpriteNode!
+    var scoreLabel: SKLabelNode!
+    var scoreOutline: SKLabelNode!
     
     /* Sushi tower array */
     var sushiTower: [SushiPiece] = []
@@ -42,6 +44,13 @@ class GameScene: SKScene {
         }
     }
     
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.text = String(score)
+            scoreOutline.text = scoreLabel.text
+        }
+    }
+    
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -50,6 +59,8 @@ class GameScene: SKScene {
         sushiBasePiece = childNodeWithName("sushiBasePiece") as! SushiPiece
         character = childNodeWithName("character") as! Character
         healthBar = childNodeWithName("healthBar") as! SKSpriteNode
+        scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
+        scoreOutline = childNodeWithName("scoreLabelOutline") as! SKLabelNode
         
         /* Setup chopstick connections */
         sushiBasePiece.connectChopsticks()
@@ -110,6 +121,9 @@ class GameScene: SKScene {
             
             /* Increment Health */
             health += 0.1
+            
+            /* Increment Score */
+            score += 1
             
             /* Remove from sushi tower array */
             sushiTower.removeFirst()
